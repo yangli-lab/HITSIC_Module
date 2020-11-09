@@ -20,21 +20,30 @@
 
 #include "hitsic_common.h"
 
-//config marco
+#if defined(HITSIC_USE_EXTINT) && (HITSIC_USE_EXTINT > 0)
 
+typedef PORT_Type INTC_Type;
+typedef port_interrupt_t extInt_interruptMode_t;
 
+#define EXTINT_InterruptOrDMADisabled	kPORT_InterruptOrDMADisabled
+#define EXTINT_DMARisingEdge 			kPORT_DMARisingEdge
+#define EXTINT_DMAFallingEdge 			kPORT_DMAFallingEdge
+#define EXTINT_DMAEitherEdge 			kPORT_DMAEitherEdge
+#define EXTINT_InterruptLogicZero 		kPORT_InterruptLogicZero
+#define EXTINT_InterruptRisingEdge 		kPORT_InterruptRisingEdge
+#define EXTINT_InterruptFallingEdge 	kPORT_InterruptFallingEdge
+#define EXTINT_InterruptEitherEdge 		kPORT_InterruptEitherEdge
+#define EXTINT_InterruptLogicOne		kPORT_InterruptLogicOne
 
-//HAL marco
-#define INTC_Type 			PORT_Type
-#define interrupt_mode_t 		port_interrupt_t
 #define EXTINT_SetInterruptConfig(_intc, _pin, _cfg) 	PORT_SetPinInterruptConfig(_intc, _pin, _cfg)
 #define EXTINT_GetInterruptFlags(_intc) 				PORT_GetPinsInterruptFlags(_intc)
 #define EXTINT_ClearInterruptFlags(_intc, _mask) 				PORT_ClearPinsInterruptFlags(_intc, _mask)
 
 
 
-
+#ifndef HITSIC_EXTMGR_INITLIZE
 #define HITSIC_EXTMGR_INITLIZE 		(1U)
+#endif // ! HITSIC_EXTMGR_INITLIZE
 
 #if defined(HITSIC_EXTMGR_INITLIZE) && (HITSIC_EXTMGR_INITLIZE > 0)
 inline void EXTINT_PlatformInit(void)
@@ -62,6 +71,6 @@ inline INTC_Type *EXTINT_GetPortInst(GPIO_Type *gpio)
 	return lut[((uint32_t)gpio - GPIOA_BASE) / (GPIOB_BASE - GPIOA_BASE)];
 }
 
-
+#endif // ! HITSIC_USE_EXTINT
 
 #endif // ! D_MK66F18_SYS_EXTINT_PORT_HPP_

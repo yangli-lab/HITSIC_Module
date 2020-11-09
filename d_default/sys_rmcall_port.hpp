@@ -1,11 +1,7 @@
-#ifndef _SYS_RMCALL_HPP_
-#define _SYS_RMCALL_HPP_
+#ifndef D_DEFAULT_SYS_RMCALL_PORT_HPP_
+#define D_DEFAULT_SYS_RMCALL_PORT_HPP_
 #include "hitsic_common.h"
 #include "inc_stdlib.h"
-
-#ifndef HITSIC_USE_RMCALL
-#define HITSIC_USE_RMCALL 1U
-#endif // ! HITSIC_USE_RMCALL
 
 #if defined(HITSIC_USE_RMCALL) && (HITSIC_USE_RMCALL > 0)
 
@@ -26,4 +22,4 @@
 
 #endif // HITSIC_USE_RMCALL
 
-#endif // ! _SYS_RMCALL_HPP_
+#endif // ! D_DEFAULT_SYS_RMCALL_PORT_HPP_

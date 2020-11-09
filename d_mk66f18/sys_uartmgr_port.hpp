@@ -10,8 +10,6 @@
 
 #include "hitsic_common.h"
 
-#define HITSIC_USE_UARTMGR (0U)
-
 #if defined(HITSIC_USE_UARTMGR) && (HITSIC_USE_UARTMGR > 0)
 
 /* RT1052
@@ -44,4 +42,4 @@
 
 #endif // ! HITSIC_USE_UARTMGR
 
-#endif /* D_MK66F18_SYS_UARTMGR_PORT_HPP_ */
+#endif // ! D_MK66F18_SYS_UARTMGR_PORT_HPP_
